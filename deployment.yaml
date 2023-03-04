@@ -4,10 +4,16 @@ metadata:
   name: valaxy-rtp
   namespace: valaxy
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app:  valaxy-rtp
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
   template:
     metadata:
       labels:
@@ -30,9 +36,3 @@ spec:
           value: "9703354-52rXHD6EeOQeYyhtNz1w8UVOgbcLcgOo4O7MB6WV3"
         - name: ACCESS_TOKEN_SECRET
           value: "zBThlZDEp8qnu7NwwdHNth8eg3Rf9zqbvUEFUTaZtN2SF"
-        minReadySeconds: 5
-      strategy:
-        type: RollingUpdate
-        rollingUpdate:
-          maxSurge: 1
-          maxUnavailable: 1
