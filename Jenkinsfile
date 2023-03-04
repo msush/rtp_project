@@ -105,6 +105,7 @@ stage(" Docker Build ") {
           steps {
             script {
                echo '<--------------- Deploy Started --------------->'
+               sh 'chmod 777 deploy.sh'
                sh './deploy.sh'
                echo '<--------------- Deploy Ends --------------->'
             }
